@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+
+http://cis-linux2.temple.edu:8080/FA20_3344_tug61428/HW#_Parker/build/web/index.html
+
+                                                       # in place of HW number ^
+-->
+
+
+<html>
+    <head>
+        <title>Full Swing</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/newStyles.css">
+        <link rel="stylesheet" type="text/css" href="css/teeTimeStyle.css">
+        <link rel="stylesheet" type="text/css" href="css/slideShowStyle.css">
+        <link rel="stylesheet" type="text/css" href="css/clickSort.css">
+        <script src="js/newScript.js"></script>
+        <script src="js/components/home.js"></script>
+        <script src="js/components/blog.js"></script>
+        <script src="js/components/courses.js"></script>
+        <script src="js/components/users.js"></script>
+        <script src="js/components/SlideShows.js"></script>
+        <script src="js/reusable/MakeTeeTime.js"></script>
+        <script src="js/components/JSObjects.js"></script>
+        <script src="js/reusable/MakeSlideShow.js"></script>
+        <script src="js/reusable/MakeTable.js"></script>
+        <script src="js/reusable/ajax.js"></script>
+    </head>
+    <body>
+        <div id="titleNav">
+            <div id="title">Full Swing</div>
+            <div id="nav">
+                <div class="dropdown">
+                    <a href="#/home">Home | </a>
+                </div>
+                <div class="dropdown">
+                    <div onclick="drop(this)">Account | </div>
+                    <div class="dropContent">
+                        <a>Register</a> <br/>
+                        <a>Log in</a> <br/>
+                        <a>Profile</a> <br/>
+                        <a>Log out</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div onclick="drop(this)" >Search | </div>
+                    <div class="dropContent">
+                        <a href="#/JSObjects">JS Objects</a> <br/>
+                        <a href='#/courses'>Courses</a> <br/>
+                        <a href='#/users'>Users</a> <br/>
+                        <a href="#/SlideShows">SlideShow</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div onclick="drop(this)">Deals | </div>
+                    <div class="dropContent">
+                        <a>Hot Deals</a> <br/>
+                        <a>Travel</a> 
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#/blog">Blog | </a>
+                </div>
+                <div class="dropdown">
+                    <div onclick="drop(this)">Tutorial</div>
+                    <div class="dropContent">
+                        <a>Proposal</a> <br/>
+                        <a>Proof of Concept</a> <br/>
+                        <a>Tutorial Home</a> <br/>
+                        <a>Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="wrapper">
+            <div class="row">
+                <div class="column column66">
+                    <div id="content">
+                        <h2>Welcome to Full Swing!</h2>
+                        <p>
+                            With Full Swing, you no longer have to worry about the hassle of trying to book a tee time
+                            weeks in advance. Full Swing offers thousands of tee times at golf courses around the world.
+                            In addition to our huge catalog of courses, we also get you the best deals on the hottest times.
+                            Start searching for your next tee time now!
+                        </p>
+                        <div class="slideShowContainer">
+                            <div class="slideShow" id="firstSlide"></div>
+                            <div class="slideShow" id="secondSlide"></div>
+                        </div>
+                        <div class="clickSort">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class ="column column33">
+                </div>
+            </div>
+            <div class ="row">
+                <div class="teeTimeStyle">
+                    <h3>Upcoming Tee Times:</h3>
+                </div>
+            </div>
+        </div>
+        <div id="footer">Patrick Parker</div>
+
+        <script>
+            var routes = [];
+
+            routes['/'] = home;
+            routes['#/home'] = home;
+            routes['#/blog'] = blog;
+            routes['#/courses'] = courses;
+            routes['#/users'] = users;
+            routes['#/JSObjects'] = JSObjects;
+            routes['#/SlideShows'] = SlideShows;
+
+            console.log("length of routing table is " + routes.length);
+            console.log(routes);
+
+            function inject(what) {
+                document.getElementById("content").innerHTML = "";
+                document.getElementById("content").appendChild(what);
+            }
+
+            function router() {
+                console.log("location.hash is " + location.hash);
+                var path = location.hash;
+
+                if (!routes[path]) {
+                    var ele = document.createElement("div");
+                    ele.innerHTML = "<h4>Error: path '" + path + "' was never added to the route array</h4>";
+                    inject(ele);
+                } else {
+                    var newDOM = routes[path]();
+                    inject(newDOM);
+                }
+            }
+
+            window.addEventListener('hashchange', router);
+            window.location.hash = '#/xxx';
+            window.location.hash = '#/home';
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,20 @@
+[
+    {
+        "courseName": "Jeffersonville Golf Club",
+        "price": "45",
+        "rating": "3.5",
+        "address": "2400 W Main St, Norristown, PA 19403"
+    },
+    {
+        "courseName": "Linfield National",
+        "price": "35",
+        "rating": "3.2",
+        "address": "66 Church Rd, Linfield, PA 19468"
+    },
+    {
+        "courseName": "Turtle Creek Golf Course",
+        "price": "55",
+        "rating": "4.3",
+        "address": "303 W Ridge Pike, Limerick, PA 19468"
+    }
+]
